@@ -108,6 +108,14 @@ This project aims to use collaborative filtering,content-based recommendations a
 ```bash
 # Clone repository
 git clone https://github.com/Wanyiri9dave/similarityEngine.git
+# Navigate to project
+cd SimilarityEngine
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Launch notebook
+jupyter notebook
 ```
 ## 🔮 Future Improvements
 
