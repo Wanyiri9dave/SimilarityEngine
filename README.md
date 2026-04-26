@@ -130,6 +130,8 @@ Deploy using Flask or cloud platforms
 Build real-time recommendation API  
 Improve hybrid model performance  
 Add movie posters and UI enhancements  
+
+
 ⭐ Support
 
 If you found this project useful, consider starring the repository ⭐
