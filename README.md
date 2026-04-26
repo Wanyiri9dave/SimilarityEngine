@@ -125,6 +125,12 @@ jupyter notebook
 - Improve hybrid model performance
 
 
+---
+
+If you want, I can next:
+- :contentReference[oaicite:2]{index=2}
+- or :contentReference[oaicite:3]{index=3}
+- or :contentReference[oaicite:4]{index=4}
 
 
 
