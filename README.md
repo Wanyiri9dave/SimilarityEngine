@@ -24,7 +24,7 @@ This project aims to design a Movie Recommendation System that improves user exp
   
 ## ℹ️ Overview
 
-This project combines multiple recommendation techniques to build a robust system for a movie streaming platform. It leverages:
+This project combines multiple recommendation techniques to build a robust system for a movie streaming platform. It leverages;
 
 - User behavior (ratings)
 - Movie metadata (genres, titles)
