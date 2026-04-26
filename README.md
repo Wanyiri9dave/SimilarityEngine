@@ -15,12 +15,13 @@ With the rapid growth of digital content, users often struggle to find relevant 
 This project aims to design a Movie Recommendation System that improves user experience by reducing search time, increasing engagement, and enhancing content discovery. The system also includes an interactive user interface built using Streamlit.
 
 ## 🌟 Highlights
-Developed a Popularity-Based Recommendation System (baseline model)
-Built a Content-Based Recommendation System
-Implemented Collaborative Filtering (SVD-based)
-Designed a Hybrid Recommendation Model
-Created an interactive Streamlit Web Application
-Evaluated model performance using appropriate metrics
+- Developed a Popularity-Based Recommendation System (baseline model)
+- Built a Content-Based Recommendation System
+- Implemented Collaborative Filtering (SVD-based)
+- Designed a Hybrid Recommendation Model
+- Created an interactive Streamlit Web Application
+- Evaluated model performance using appropriate metrics
+  
 ## ℹ️ Overview
 
 This project combines multiple recommendation techniques to build a robust system for a movie streaming platform. It leverages:
