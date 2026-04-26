@@ -106,12 +106,12 @@ def hybrid_recommendations(user_id, movies, ratings, best_model, genre_similarit
 
 The project includes an interactive Streamlit app where users can:
 
-1.Select a movie
-2.Choose a recommendation model:
-  - Content-Based
-  - Popularity-Based
-  - Collaborative Filtering
-3.View recommended movies instantly
+1 .Select a movie
+2. Choose a recommendation model:
+   - Content-Based
+   - Popularity-Based
+   - Collaborative Filtering
+3. View recommended movies instantly
 
 ### ▶️ Running the app:
 
