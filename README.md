@@ -111,8 +111,8 @@ Collaborative Filtering
 View recommended movies instantly
 ## ▶️ Run the app:
 
-streamlit run app.py
 ```
+streamlit run app.py
 
 
 
