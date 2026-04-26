@@ -69,24 +69,23 @@ Learning latent features representing user preferences and movie characteristics
 Predicting unseen ratings
 ## 5. Hybrid Recommendation Model
 
-A combination of collaborative filtering and content-based methods:
+A combination of collaborative filtering and content-based methods:  
 
- def hybrid_recommendations(user_id, movies, ratings, best_model, genre_similarity, alpha=0.5):
+def hybrid_recommendations(user_id, movies, ratings, best_model, genre_similarity, alpha=0.5):  
 
-    # Collaborative filtering predictions
-    svd_df = get_svd_predictions(user_id, movies, ratings, best_model)
-
-    # Content-based scores
-    genre_df = get_genre_scores(user_id, ratings, movies, genre_similarity)
-
-    # Merge both
-    hybrid_df = svd_df.merge(genre_df, on='movieId')
-
-    # Weighted combination
-    hybrid_df['final_score'] = alpha * hybrid_df['svd_score'] + (1 - alpha) * hybrid_df['genre_score']
-
-    # Top recommendations
-    top_movies = hybrid_df.sort_values(by='final_score', ascending=False).head(10)
+# Collaborative filtering predictions  
+    svd_df = get_svd_predictions(user_id, movies, ratings, best_model)  
+    
+ # Content-based scores  
+      genre_df = get_genre_scores(user_id, ratings, movies, genre_similarity)  
+      
+  # Merge both  
+     hybrid_df = svd_df.merge(genre_df, on='movieId')  
+  # Weighted combination  
+     hybrid_df['final_score'] = alpha * hybrid_df['svd_score'] + (1 - alpha) * hybrid_df['genre_score']  
+     
+   # Top recommendations  
+      top_movies = hybrid_df.sort_values(by='final_score', ascending=False).head(10)
 
     top_movies = top_movies.merge(movies[['movieId', 'title']], on='movieId')
 
