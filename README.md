@@ -70,7 +70,7 @@ This project aims to use collaborative filtering,content-based recommendations a
 - Predicting missing ratings  
 
 #### Example Usage
-.. code-block:: python
+
 
     def hybrid_recommendations(user_id, movies, ratings, best_model, genre_similarity, alpha = 0.5):
 
@@ -91,7 +91,6 @@ This project aims to use collaborative filtering,content-based recommendations a
 
     return top_movies[['movieId', 'title', 'final_score']]
 
-.. code-block:: python
 
 
 ### 5. Recommendation Generation
@@ -127,11 +126,7 @@ jupyter notebook
 
 ---
 
-If you want, I can next:
-- :contentReference[oaicite:2]{index=2}
-- or :contentReference[oaicite:3]{index=3}
-- or :contentReference[oaicite:4]{index=4}
-
+⭐ If you like this project, consider starring the repo!
 
 
 
