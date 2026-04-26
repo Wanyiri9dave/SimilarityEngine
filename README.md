@@ -120,6 +120,22 @@ The project includes an interactive Streamlit app where users can:
 ```
 streamlit run app.py
 ```
+
+## 🚀 How to Run the Project
+
+```bash
+# Clone repository
+git clone https://github.com/Wanyiri9dave/similarityEngine.git
+# Navigate to project
+cd SimilarityEngine
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Launch notebook
+jupyter notebook
+```
+
 ## 📈 Results
 - Generated accurate Top-N recommendations  
 - Improved recommendation quality using hybrid model  
