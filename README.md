@@ -25,9 +25,9 @@ Evaluated model performance using appropriate metrics
 
 This project combines multiple recommendation techniques to build a robust system for a movie streaming platform. It leverages:
 
-User behavior (ratings)
-Movie metadata (genres, titles)
-Machine learning models
+- User behavior (ratings)
+- Movie metadata (genres, titles)
+- Machine learning models
 
 The system supports multiple recommendation approaches and allows users to interact with the models through a user-friendly interface.
 
@@ -39,12 +39,12 @@ Trevor Obonyo – Model Tuning
 Clive Kinyanjui – Business Intelligence Tools
 
 ## 📊 Dataset
-Source: https://grouplens.org/datasets/movielens/latest/
+Source: *https://grouplens.org/datasets/movielens/latest/*
 Key Features:
-User ID
-Movie ID
-Ratings
-Movie metadata (title, genres, etc.)
+ -User ID
+ -Movie ID
+ -Ratings
+ -Movie metadata (title, genres, etc.)
 
 ## 🛠️ Tech Stack  
 Python 🐍  
@@ -56,20 +56,23 @@ Streamlit
 
 ## 🧠 Methodology
 1. Data Preprocessing
-Handling missing values
-Merging datasets
-Creating a user-item interaction matrix
+- Handling missing values
+- Merging datasets
+- Creating a user-item interaction matrix
+  
 2. Exploratory Data Analysis (EDA)
-Rating distribution analysis
-Identifying most popular movies
-Understanding user behavior patterns
-3. Content-Based Filtering
-TF-IDF vectorization of movie genres
-Cosine similarity to identify similar movies
-4. Collaborative Filtering (SVD)
-Matrix factorization using Singular Value Decomposition
-Learning latent features representing user preferences and movie characteristics
-Predicting unseen ratings
+- Rating distribution analysis
+- Identifying most popular movies
+- Understanding user behavior patterns
+
+4. Content-Based Filtering
+- TF-IDF vectorization of movie genres
+- Cosine similarity to identify similar movies
+
+6. Collaborative Filtering (SVD)
+- Matrix factorization using Singular Value Decomposition
+- Learning latent features representing user preferences and movie characteristics
+- Predicting unseen ratings
 ## 5. Hybrid Recommendation Model
 
 A combination of collaborative filtering and content-based methods:  
