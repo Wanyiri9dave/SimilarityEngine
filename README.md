@@ -37,6 +37,7 @@ Dave Ndung'u – Machine Learning & Modelling
 Mading Garang – Presentations & Data Preparation  
 Trevor Obonyo – Model Tuning  
 Clive Kinyanjui – Business Intelligence Tools
+
 ## 📊 Dataset
 Source: https://grouplens.org/datasets/movielens/latest/
 Key Features:
@@ -44,6 +45,7 @@ User ID
 Movie ID
 Ratings
 Movie metadata (title, genres, etc.)
+
 ## 🛠️ Tech Stack  
 Python 🐍  
 Pandas & NumPy  
@@ -51,6 +53,7 @@ Scikit-learn
 Surprise Library (SVD)  
 Matplotlib & Seaborn  
 Streamlit
+
 ## 🧠 Methodology
 1. Data Preprocessing
 Handling missing values
