@@ -32,10 +32,10 @@ Machine learning models
 The system supports multiple recommendation approaches and allows users to interact with the models through a user-friendly interface.
 
 ## ✍️ Authors
-Leila Abdikarim – Machine Learning & Modelling
-Dave Ndung'u – Machine Learning & Modelling
-Mading Garang – Presentations & Data Preparation
-Trevor Obonyo – Model Tuning
+Leila Abdikarim – Machine Learning & Modelling  
+Dave Ndung'u – Machine Learning & Modelling  
+Mading Garang – Presentations & Data Preparation  
+Trevor Obonyo – Model Tuning  
 Clive Kinyanjui – Business Intelligence Tools
 ## 📊 Dataset
 Source: https://grouplens.org/datasets/movielens/latest/
