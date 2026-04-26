@@ -99,7 +99,7 @@ A combination of collaborative filtering and content-based methods:
 ## 6. Recommendation Generation
 Top-N recommendations
 Model comparison (Content vs Collaborative vs Hybrid)
-📱 Streamlit Application
+## 📱 Streamlit Application
 
 The project includes an interactive Streamlit app where users can:
 
