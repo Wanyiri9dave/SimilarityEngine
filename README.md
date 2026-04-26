@@ -44,12 +44,12 @@ User ID
 Movie ID
 Ratings
 Movie metadata (title, genres, etc.)
-## 🛠️ Tech Stack
-Python 🐍
-Pandas & NumPy
-Scikit-learn
-Surprise Library (SVD)
-Matplotlib & Seaborn
+## 🛠️ Tech Stack  
+Python 🐍  
+Pandas & NumPy  
+Scikit-learn  
+Surprise Library (SVD)  
+Matplotlib & Seaborn  
 Streamlit
 ## 🧠 Methodology
 1. Data Preprocessing
