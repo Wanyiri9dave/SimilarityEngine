@@ -42,10 +42,10 @@ Clive Kinyanjui – Business Intelligence Tools
 ## 📊 Dataset
 Source: *https://grouplens.org/datasets/movielens/latest/*
 Key Features:
- -User ID
- -Movie ID
- -Ratings
- -Movie metadata (title, genres, etc.)
+ - User ID
+ - Movie ID
+ - Ratings
+ - Movie metadata (title, genres, etc.)
 
 ## 🛠️ Tech Stack  
 Python 🐍  
