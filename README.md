@@ -8,7 +8,7 @@
 ---
 
 
-  with the everchanging complexity of how we interact with films on streaming platforms there has been a need to reduce the time a user spends while scrolling through content,as these platforms can have thousands of movies.It brings up an almost impossible move of getting to go through all the movies creating an instance known as **scrolling fatigue**.We are tasked with the creation of a recommender sytem which will help boost user interaction in a given film streamimg site,reduce scrolling fatigue and perhaps boost sales.This Project will also incorporate an active user interface for the target users before we reach the deployment stage.
+   On Youtube every minute people upload 500 hours of videos, i.e. it would take 82 years to a user to watch all videos uploaded just in the last hour and on Spotify users can listen to ore than 80 million song tracks and podcasts so with the everchanging complexity of how we interact with films on streaming platforms and such platforms there has been a need to reduce the time a user spends while scrolling through content,as these platforms can have thousands of movies.It brings up an almost impossible move of getting to go through all the movies creating an instance known as **scrolling fatigue**.We are tasked with the creation of a recommender sytem which will help boost user interaction in a given film streamimg site,reduce scrolling fatigue and perhaps boost sales.This Project will also incorporate an active user interface for the target users before we reach the deployment stage.
 
   ## 🌟 Highlights
 
@@ -87,7 +87,7 @@ git clone https://github.com/Wanyiri9dave/similarityEngine.git
 ## 🔮 Future Improvements
 
 - Implement deep learning-based recommender systems
-- Deploy using Streamlit or Flask
+- Deploy using SFlask
 - Build real-time recommendation API
 - Improve hybrid model performance
 
