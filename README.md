@@ -69,6 +69,31 @@ This project aims to use collaborative filtering,content-based recommendations a
 - Learning hidden relationships  
 - Predicting missing ratings  
 
+#### Example Usage
+.. code-block:: python
+
+    def hybrid_recommendations(user_id, movies, ratings, best_model, genre_similarity, alpha = 0.5):
+
+    # Getting CF (SVD) and CBF (genre_similarity) predictions for the user
+    svd_df = get_svd_predictions(user_id, movies, ratings, best_model)
+    genre_df = get_genre_scores(user_id, ratings, movies, genre_similarity)
+
+    # merging both dataframes
+    hybrid_df = svd_df.merge(genre_df, on = 'movieId')
+
+    # Computing final score (weighted blend)
+    hybrid_df['final_score'] = alpha * hybrid_df['svd_score'] + (1 - alpha) * hybrid_df['genre_score']
+
+    # Get top recommendations
+    top_movies = hybrid_df.sort_values(by = 'final_score', ascending = False).head(10)
+
+    top_movies = top_movies.merge(movies[['movieId', 'title']], on = 'movieId')
+
+    return top_movies[['movieId', 'title', 'final_score']]
+
+.. code-block:: python
+
+
 ### 5. Recommendation Generation
 - Top-N recommendations per user  
 - Optional hybrid approach (content-based recommender + SVD)
