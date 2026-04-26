@@ -8,8 +8,8 @@
 ---
 
 
-   ## 🎬 Movie Recommendation System
-📌 Introduction
+ 
+## 📌 Introduction
 
 On platforms like YouTube, over 500 hours of video are uploaded every minute, meaning it would take a user approximately 82 years to watch all content uploaded in just one hour. Similarly, Spotify offers access to more than 80 million songs and podcasts.
 
