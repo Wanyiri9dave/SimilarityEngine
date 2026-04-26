@@ -98,9 +98,9 @@ def hybrid_recommendations(user_id, movies, ratings, best_model, genre_similarit
     return top_movies[['movieId', 'title', 'final_score']]
 
 
-##3 6. Recommendation Generation
-Top-N recommendations
-Model comparison (Content vs Collaborative vs Hybrid)
+### 6. Recommendation Generation
+- Top-N recommendations
+- Model comparison (Content vs Collaborative vs Hybrid)
 
 ### 📱 Streamlit Application
 
@@ -108,9 +108,9 @@ The project includes an interactive Streamlit app where users can:
 
 1.Select a movie
 2.Choose a recommendation model:
-  -Content-Based
-  -Popularity-Based
-  -Collaborative Filtering
+  - Content-Based
+  - Popularity-Based
+  - Collaborative Filtering
 3.View recommended movies instantly
 
 ### ▶️ Running the app:
@@ -119,25 +119,25 @@ The project includes an interactive Streamlit app where users can:
 streamlit run app.py
 ```
 ## 📈 Results
--Generated accurate Top-N recommendations  
--Improved recommendation quality using hybrid model  
--Reduced user search effort  
--Demonstrated model effectiveness through evaluation metrics (RMSE / MAE)
+- Generated accurate Top-N recommendations  
+- Improved recommendation quality using hybrid model  
+- Reduced user search effort  
+- Demonstrated model effectiveness through evaluation metrics (RMSE / MAE)
 
 ## 🎯 Business Value
 This system helps streaming platforms to:
 
-  -Reduce user scrolling time  
-  -Increase user engagement  
-  -Improve content discoverability  
-  -Enhance user satisfaction and retention
+  - Reduce user scrolling time  
+  - Increase user engagement  
+  - Improve content discoverability  
+  - Enhance user satisfaction and retention
 
 ## 🔮 Future Improvements
--Implement deep learning-based recommendation systems  
--Deploy using Flask or cloud platforms  
--Build real-time recommendation API  
--Improve hybrid model performance  
--Add movie posters and UI enhancements  
+- Implement deep learning-based recommendation systems  
+- Deploy using Flask or cloud platforms  
+- Build real-time recommendation API  
+- Improve hybrid model performance  
+- Add movie posters and UI enhancements  
 
 
 If you found this project useful, consider starring the repository ⭐
