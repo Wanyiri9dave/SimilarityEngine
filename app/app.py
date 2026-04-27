@@ -80,18 +80,20 @@ collab_df = sample_ratings.merge(
 
 collab_df = collab_df.dropna(subset=["userId", "movieId", "title", "rating"])
 
-# reduce size for Streamlit
+# Better filtering for collaborative filtering
 movie_counts = collab_df["movieId"].value_counts()
 user_counts = collab_df["userId"].value_counts()
 
+# Keep movies with at least 5 ratings and users with at least 5 ratings
 collab_df = collab_df[
-    collab_df["movieId"].isin(movie_counts[movie_counts > 1].index)
+    collab_df["movieId"].isin(movie_counts[movie_counts >= 5].index)
 ]
 
 collab_df = collab_df[
-    collab_df["userId"].isin(user_counts[user_counts > 1].index)
+    collab_df["userId"].isin(user_counts[user_counts >= 5].index)
 ]
 
+# Create user-movie matrix with normalized ratings
 user_movie_matrix = collab_df.pivot_table(
     index="userId",
     columns="title",
@@ -99,23 +101,39 @@ user_movie_matrix = collab_df.pivot_table(
     fill_value=0
 )
 
+# Create movie-movie similarity matrix based on user preferences
+# Normalize the matrix to handle rating scale differences
+movie_matrix_normalized = user_movie_matrix.fillna(0)
+# Standardize each movie's ratings
+movie_matrix_normalized = (movie_matrix_normalized - movie_matrix_normalized.mean()) / (movie_matrix_normalized.std() + 1e-8)
+movie_matrix_normalized = movie_matrix_normalized.fillna(0)
+
+# Calculate item-item similarity
+movie_similarity_matrix = cosine_similarity(movie_matrix_normalized.T)
+movie_similarity_df = pd.DataFrame(
+    movie_similarity_matrix,
+    index=user_movie_matrix.columns,
+    columns=user_movie_matrix.columns
+)
+
 def collaborative_recommend(title, top_n=10):
-    if title not in user_movie_matrix.columns:
+    """
+    Item-based collaborative filtering recommendation.
+    Finds movies similar to the selected movie based on user rating patterns.
+    """
+    if title not in movie_similarity_df.columns:
         return pd.DataFrame()
 
-    selected_movie = user_movie_matrix[[title]].T
-    similarities = cosine_similarity(selected_movie, user_movie_matrix.T).flatten()
+    # Get similarity scores for the selected movie
+    sim_scores = movie_similarity_df[title]
+    
+    # Exclude the movie itself and get top recommendations
+    similar_movies = sim_scores[sim_scores.index != title].sort_values(ascending=False).head(top_n)
 
     recs = pd.DataFrame({
-        "title": user_movie_matrix.columns,
-        "similarity_score": similarities
-    })
-
-    recs = (
-        recs[recs["title"] != title]
-        .sort_values(by="similarity_score", ascending=False)
-        .head(top_n)
-    )
+        "title": similar_movies.index,
+        "similarity_score": similar_movies.values
+    }).reset_index(drop=True)
 
     return recs
 
@@ -192,32 +210,17 @@ elif model_type == "Popularity-Based Recommendation":
         recommendations = popularity_recommend()
 
         st.subheader("Most Popular Movies")
-
-        for i, row in recommendations.iterrows():
-            poster_url = fetch_poster(row["title"])
-
-    col1, col2 = st.columns([1, 3])
-
-    with col1:
-        if poster_url:
-            st.image(poster_url)
-        else:
-            st.write("No image")
-
-    with col2:
-        st.write(f"🎬 {row['title']}")
-        if "genres" in row:
-            st.write(f"🎭 {row['genres']}")
+        st.dataframe(recommendations, use_container_width=True)
 
 else:
     st.info("This model recommends movies based on similar user rating patterns from the sample ratings data.")
 
-    if user_movie_matrix.empty:
+    if user_movie_matrix.empty or movie_similarity_df.empty:
         st.error("Collaborative filtering data is empty after filtering. Reduce the filtering threshold.")
     else:
         movie = st.selectbox(
             "Choose a movie",
-            sorted(user_movie_matrix.columns)
+            sorted(movie_similarity_df.columns)
         )
 
         if st.button("Recommend"):
