@@ -1,7 +1,10 @@
 import streamlit as st
+import requests
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
+
+API_KEY = "022b877171805be41e9b2ffd24e5ded3"
 
 # -------------------------
 # PAGE SETUP
@@ -116,6 +119,24 @@ def collaborative_recommend(title, top_n=10):
 
     return recs
 
+@st.cache_data
+def fetch_poster(movie_title):
+    url = "https://api.themoviedb.org/3/search/movie"
+    params = {
+        "api_key": API_KEY,
+        "query": movie_title.split("(")[0]  # cleaner search
+    }
+
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    if data["results"]:
+        poster_path = data["results"][0].get("poster_path")
+        if poster_path:
+            return f"https://image.tmdb.org/t/p/w500{poster_path}"
+
+    return None
+
 # -------------------------
 # STREAMLIT UI
 # -------------------------
@@ -150,7 +171,19 @@ if model_type == "Content-Based Recommendation":
             st.error("Movie not found.")
         else:
             st.subheader("Recommended Movies")
-            st.dataframe(recommendations, use_container_width=True)
+
+            for i, row in recommendations.iterrows():
+                poster_url = fetch_poster(row["title"])
+
+                col1, col2 = st.columns([1, 3])
+
+                with col1:
+                    if poster_url:
+                        st.image(poster_url)
+
+                with col2:
+                    st.write(f"🎬 {row['title']}")
+                    st.write(f"🎭 {row['genres']}")
 
 elif model_type == "Popularity-Based Recommendation":
     st.info("This model recommends the most popular movies based on the number of ratings.")
@@ -159,7 +192,22 @@ elif model_type == "Popularity-Based Recommendation":
         recommendations = popularity_recommend()
 
         st.subheader("Most Popular Movies")
-        st.dataframe(recommendations, use_container_width=True)
+
+        for i, row in recommendations.iterrows():
+            poster_url = fetch_poster(row["title"])
+
+    col1, col2 = st.columns([1, 3])
+
+    with col1:
+        if poster_url:
+            st.image(poster_url)
+        else:
+            st.write("No image")
+
+    with col2:
+        st.write(f"🎬 {row['title']}")
+        if "genres" in row:
+            st.write(f"🎭 {row['genres']}")
 
 else:
     st.info("This model recommends movies based on similar user rating patterns from the sample ratings data.")
@@ -179,4 +227,19 @@ else:
                 st.error("No collaborative recommendations found.")
             else:
                 st.subheader("Collaborative Filtering Recommendations")
-                st.dataframe(recommendations, use_container_width=True)
+                
+                for i, row in recommendations.iterrows():
+                    poster_url = fetch_poster(row["title"])
+
+    col1, col2 = st.columns([1, 3])
+
+    with col1:
+        if poster_url:
+            st.image(poster_url)
+        else:
+            st.write("No image")
+
+    with col2:
+        st.write(f"🎬 {row['title']}")
+        if "genres" in row:
+            st.write(f"🎭 {row['genres']}")
