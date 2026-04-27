@@ -99,33 +99,23 @@ user_movie_matrix = collab_df.pivot_table(
     fill_value=0
 )
 
-user_mean = user_movie_matrix.mean(axis=1)
-user_movie_matrix_norm = user_movie_matrix.sub(user_mean, axis=0)
-
-user_movie_matrix_norm = user_movie_matrix_norm.fillna(0)
-
 def collaborative_recommend(title, top_n=10):
-    if title not in user_movie_matrix_norm.columns:
+    if title not in user_movie_matrix.columns:
         return pd.DataFrame()
 
-    movie_vector = user_movie_matrix_norm[title].values.reshape(1, -1)
-
-    similarities = cosine_similarity(
-        movie_vector,
-        user_movie_matrix_norm.T
-    ).flatten()
+    selected_movie = user_movie_matrix[[title]].T
+    similarities = cosine_similarity(selected_movie, user_movie_matrix.T).flatten()
 
     recs = pd.DataFrame({
-        "title": user_movie_matrix_norm.columns,
+        "title": user_movie_matrix.columns,
         "similarity_score": similarities
     })
 
-    recs = recs[recs["title"] != title]
-
-    recs = recs.sort_values(
-        by="similarity_score",
-        ascending=False
-    ).head(top_n)
+    recs = (
+        recs[recs["title"] != title]
+        .sort_values(by="similarity_score", ascending=False)
+        .head(top_n)
+    )
 
     return recs
 
@@ -237,19 +227,18 @@ else:
                 st.error("No collaborative recommendations found.")
             else:
                 st.subheader("Collaborative Filtering Recommendations")
-
                 for i, row in recommendations.iterrows():
                     poster_url = fetch_poster(row["title"])
 
-    col1, col2 = st.columns([1, 3])
+                    col1, col2 = st.columns([1, 3])
 
-    with col1:
-        if poster_url:
-            st.image(poster_url)
-        else:
-            st.write("No image")
+                    with col1:
+                        if poster_url:
+                            st.image(poster_url)
+                        else:
+                            st.write("No image")
 
-    with col2:
-        st.write(f"🎬 {row['title']}")
-        if "genres" in row:
-            st.write(f"🎭 {row['genres']}")
+                    with col2:
+                        st.write(f"🎬 {row['title']}")
+                        if "genres" in row:
+                            st.write(f"🎭 {row['genres']}")
