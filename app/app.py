@@ -84,13 +84,13 @@ collab_df = collab_df.dropna(subset=["userId", "movieId", "title", "rating"])
 movie_counts = collab_df["movieId"].value_counts()
 user_counts = collab_df["userId"].value_counts()
 
-# Keep movies with at least 5 ratings and users with at least 5 ratings
+# Keep movies with at least 2 ratings and users with at least 2 ratings
 collab_df = collab_df[
-    collab_df["movieId"].isin(movie_counts[movie_counts >= 5].index)
+    collab_df["movieId"].isin(movie_counts[movie_counts >= 2].index)
 ]
 
 collab_df = collab_df[
-    collab_df["userId"].isin(user_counts[user_counts >= 5].index)
+    collab_df["userId"].isin(user_counts[user_counts >= 2].index)
 ]
 
 # Create user-movie matrix with normalized ratings
@@ -101,20 +101,25 @@ user_movie_matrix = collab_df.pivot_table(
     fill_value=0
 )
 
-# Create movie-movie similarity matrix based on user preferences
-# Normalize the matrix to handle rating scale differences
-movie_matrix_normalized = user_movie_matrix.fillna(0)
-# Standardize each movie's ratings
-movie_matrix_normalized = (movie_matrix_normalized - movie_matrix_normalized.mean()) / (movie_matrix_normalized.std() + 1e-8)
-movie_matrix_normalized = movie_matrix_normalized.fillna(0)
+# Initialize movie_similarity_df as empty
+movie_similarity_df = pd.DataFrame()
 
-# Calculate item-item similarity
-movie_similarity_matrix = cosine_similarity(movie_matrix_normalized.T)
-movie_similarity_df = pd.DataFrame(
-    movie_similarity_matrix,
-    index=user_movie_matrix.columns,
-    columns=user_movie_matrix.columns
-)
+# Create movie-movie similarity matrix based on user preferences only if data exists
+if not user_movie_matrix.empty and len(user_movie_matrix.columns) > 0:
+    # Normalize the matrix to handle rating scale differences
+    movie_matrix_normalized = user_movie_matrix.fillna(0)
+    # Standardize each movie's ratings
+    movie_matrix_normalized = (movie_matrix_normalized - movie_matrix_normalized.mean()) / (movie_matrix_normalized.std() + 1e-8)
+    movie_matrix_normalized = movie_matrix_normalized.fillna(0)
+
+    # Calculate item-item similarity
+    if movie_matrix_normalized.shape[1] > 1:  # Need at least 2 movies
+        movie_similarity_matrix = cosine_similarity(movie_matrix_normalized.T)
+        movie_similarity_df = pd.DataFrame(
+            movie_similarity_matrix,
+            index=user_movie_matrix.columns,
+            columns=user_movie_matrix.columns
+        )
 
 def collaborative_recommend(title, top_n=10):
     """
@@ -216,7 +221,7 @@ else:
     st.info("This model recommends movies based on similar user rating patterns from the sample ratings data.")
 
     if user_movie_matrix.empty or movie_similarity_df.empty:
-        st.error("Collaborative filtering data is empty after filtering. Reduce the filtering threshold.")
+        st.error("⚠️ Insufficient collaborative filtering data. The dataset may be too small or sparse to generate recommendations. Please ensure ratings_sample.csv has enough data.")
     else:
         movie = st.selectbox(
             "Choose a movie",
