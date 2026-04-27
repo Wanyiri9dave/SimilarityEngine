@@ -21,6 +21,7 @@ This project aims to design a Movie Recommendation System that improves user exp
 - Designed a Hybrid Recommendation Model
 - Created an interactive Streamlit Web Application
 - Evaluated model performance using appropriate metrics
+- [View the Interactive Movie Insights Story on Tableau](https://public.tableau.com/views/Movie_Analysis_G6/MovieAnalysis?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
   
 ## ℹ️ Overview
 
