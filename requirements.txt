@@ -1,4 +1,6 @@
-streamlit==1.36.0
-pandas
+streamlit
+pandas==2.2.2
 numpy
 scikit-learn
+rich
+Pillow
