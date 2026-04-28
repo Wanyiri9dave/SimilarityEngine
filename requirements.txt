@@ -1,6 +1,6 @@
-streamlit
+streamlit==1.36.0
 pandas==2.2.2
-numpy
+numpy==1.26.4
 scikit-learn
+Pillow==10.4.0
 rich
-Pillow
